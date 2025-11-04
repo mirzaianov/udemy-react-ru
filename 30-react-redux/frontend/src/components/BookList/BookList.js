@@ -19,11 +19,16 @@ const BookList = () => {
 
   const handleToggleFavorite = (id) => dispatch(toggleFavorite(id));
 
-  const filteredBooks = books.filter(
-    (book) =>
-      book.title.toLowerCase().includes(titleFilter.toLowerCase()) &&
-      book.author.toLowerCase().includes(authorFilter.toLowerCase()),
-  );
+  const filteredBooks = books.filter((book) => {
+    const matchesTitle = book.title
+      .toLowerCase()
+      .includes(titleFilter.toLowerCase());
+    const matchesAuthor = book.author
+      .toLowerCase()
+      .includes(authorFilter.toLowerCase());
+
+    return matchesTitle && matchesAuthor;
+  });
 
   return (
     <div className="app-block book-list">
